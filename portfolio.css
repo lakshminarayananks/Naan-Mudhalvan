@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lakshminarayanan | Web Developer</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px 0;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #333 0%, #555 100%);
+            color: #fff;
+            padding: 60px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><defs><radialGradient id="a" cx="50%" cy="40%"><stop offset="0%" stop-color="%23FFF" stop-opacity="0.1"/><stop offset="100%" stop-color="%23FFF" stop-opacity="0"/></radialGradient></defs><rect width="100%" height="100%" fill="url(%23a)"/></svg>');
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+        
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        header p {
+            font-size: 1.2em;
+            position: relative;
+            z-index: 1;
+            opacity: 0.9;
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: #444;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 15px 0;
+        }
+        
+        nav ul li {
+            margin: 0 20px;
+        }
+        
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            background-color: #0066cc;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,102,204,0.3);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: #0066cc;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        /* Sections */
+        section {
+            padding: 60px 0;
+            border-bottom: 1px solid #ddd;
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        section h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #333;
+            text-align: center;
+            position: relative;
+        }
+        
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, #0066cc, #00aaff);
+            border-radius: 2px;
+        }
+        
+        /* About Section */
+        #about p {
+            font-size: 1.1em;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            color: #555;
+            line-height: 1.8;
+        }
+        
+        /* Projects Section */
+        #projects {
+            background-color: #fff;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .project {
+            background: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-left: 4px solid #0066cc;
+            cursor: pointer;
+        }
+        
+        .project:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .project h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        
+        .project p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .project-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, #0066cc, #00aaff);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .contact-item {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+            min-width: 200px;
+        }
+        
+        .contact-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+        
+        .contact-item strong {
+            display: block;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        /* Links */
+        a {
+            color: #0066cc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: #0052a3;
+            text-decoration: underline;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #333 0%, #555 100%);
+            color: #fff;
+            text-align: center;
+            padding: 40px 0;
+        }
+        
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #0066cc, #00aaff);
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #0066cc, #00aaff);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,102,204,0.4);
+        }
+        
+        .back-to-top.visible {
+            display: flex;
+        }
+        
+        /* Debug Panel */
+        .debug-panel {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: rgba(0, 0, 0, 0.9);
+            color: #00ff00;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+            max-width: 300px;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .debug-toggle {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: #333;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            z-index: 1001;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5em;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            nav ul li {
+                margin: 5px 0;
+            }
+            
+            section h2 {
+                font-size: 2em;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-progress" id="scroll-progress"></div>
+    
+    <button class="debug-toggle" onclick="toggleDebug()">Debug</button>
+    <div class="debug-panel" id="debug-panel">
+        <div>Logs will appear here...</div>
+    </div>
+    
+    <header>
+        <div class="container">
+            <h1>Lakshminarayanan</h1>
+            <p>Web Developer</p>
+        </div>
+    </header>
+    
+    <nav>
+        <ul class="container">
+            <li><a href="#about" data-section="about">About</a></li>
+            <li><a href="#projects" data-section="projects">Projects</a></li>
+            <li><a href="#contact" data-section="contact">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <section id="about" class="container">
+        <h2>About Me</h2>
+        <p>I am a passionate web developer with skills in HTML, CSS, JavaScript, and responsive design. I love building clean and functional websites that solve real-world problems. With a keen eye for detail and a commitment to user experience, I create digital solutions that make a difference.</p>
+    </section>
+    
+    <section id="projects" class="container">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+            <div class="project" data-project="portfolio">
+                <h3>Project 1: Portfolio Website</h3>
+                <p>A personal portfolio to showcase my skills and projects, featuring responsive design, smooth animations, and integrated analytics.</p>
+                <span class="project-badge">HTML/CSS/JS</span>
+            </div>
+            <div class="project" data-project="blog">
+                <h3>Project 2: Responsive Blog</h3>
+                <p>A mobile-first blog layout using HTML and CSS Flexbox/Grid, optimized for readability and performance across all devices.</p>
+                <span class="project-badge">Responsive Design</span>
+            </div>
+            <div class="project" data-project="logging">
+                <h3>Project 3: Web Logging System</h3>
+                <p>A comprehensive logging solution for web applications, featuring error tracking, performance monitoring, and user analytics.</p>
+                <span class="project-badge">JavaScript</span>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact" class="container">
+        <h2>Contact</h2>
+        <div class="contact-info">
+            <div class="contact-item">
+                <strong>Email</strong>
+                <a href="mailto:your.email@example.com" data-contact="email">your.email@example.com</a>
+            </div>
+            <div class="contact-item">
+                <strong>LinkedIn</strong>
+                <a href="#" data-contact="linkedin">linkedin.com/in/yourprofile</a>
+            </div>
+            <div class="contact-item">
+                <strong>GitHub</strong>
+                <a href="#" data-contact="github">github.com/yourusername</a>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Lakshminarayanan. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <button class="back-to-top" id="back-to-top" onclick="scrollToTop()">↑</button>
+
+    <script>
+        // Enhanced Web Logger Class
+        class WebLogger {
+            constructor(config = {}) {
+                this.level = config.level || 'info';
+                this.enableConsole = config.enableConsole !== false;
+                this.enableStorage = config.enableStorage || false;
+                this.enableDebugPanel = config.enableDebugPanel || true;
+                this.apiEndpoint = config.apiEndpoint;
+                this.maxStorageSize = config.maxStorageSize || 100;
+                this.debugLogs = [];
+                this.maxDebugLogs = 20;
+                this.sessionStartTime = Date.now();
+            }
+
+            log(level, category, message, data = {}) {
+                const timestamp = new Date().toISOString();
+                const logEntry = {
+                    timestamp,
+                    level,
+                    category,
+                    message,
+                    url: window.location.href,
+                    userAgent: navigator.userAgent,
+                    sessionId: this.getSessionId(),
+                    sessionTime: Date.now() - this.sessionStartTime,
+                    ...data
+                };
+
+                // Console logging with styling
+                if (this.enableConsole) {
+                    const styles = {
+                        error: 'color: #dc2626; font-weight: bold;',
+                        warn: 'color: #d97706; font-weight: bold;',
+                        info: 'color: #2563eb;',
+                        debug: 'color: #6b7280;',
+                        success: 'color: #16a34a; font-weight: bold;'
+                    };
+                    console.log(`%c[${level.toUpperCase()}] ${category}: ${message}`, styles[level], data);
+                }
+
+                // Debug panel logging
+                if (this.enableDebugPanel) {
+                    this.addToDebugPanel(level, category, message, data);
+                }
+
+                // Local storage logging
+                if (this.enableStorage) {
+                    this.storeLog(logEntry);
+                }
+
+                // Send to API endpoint
+                if (this.apiEndpoint) {
+                    this.sendToAPI(logEntry);
+                }
+            }
+
+            // Convenience methods
+            error(category, message, data) { this.log('error', category, message, data); }
+            warn(category, message, data) { this.log('warn', category, message, data); }
+            info(category, message, data) { this.log('info', category, message, data); }
+            debug(category, message, data) { this.log('debug', category, message, data); }
+            success(category, message, data) { this.log('success', category, message, data); }
+
+            addToDebugPanel(level, category, message, data) {
+                const time = new Date().toLocaleTimeString();
+                const logText = `[${time}] ${level.toUpperCase()}: ${message}`;
+                
+                this.debugLogs.unshift(logText);
+                if (this.debugLogs.length > this.maxDebugLogs) {
+                    this.debugLogs.pop();
+                }
+                
+                this.updateDebugPanel();
+            }
+
+            updateDebugPanel() {
+                const panel = document.getElementById('debug-panel');
+                if (panel) {
+                    panel.innerHTML = this.debugLogs.map(log => `<div>${log}</div>`).join('');
+                }
+            }
+
+            trackUserInteraction(element, action, additionalData = {}) {
+                this.info('user-interaction', `User ${action} on ${element}`, {
+                    element,
+                    action,
+                    timestamp: performance.now(),
+                    ...additionalData
+                });
+            }
+
+            trackPerformance(metric, value) {
+                this.info('performance', `Performance: ${metric}`, {
+                    metric,
+                    value,
+                    timestamp: performance.now()
+                });
+            }
+
+            trackPageMetrics() {
+                // Track page load performance
+                if (performance.timing) {
+                    const timing = performance.timing;
+                    const loadTime = timing.loadEventEnd - timing.navigationStart;
+                    this.trackPerformance('page-load-time', loadTime + 'ms');
+                }
+
+                // Track viewport size
+                this.info('analytics', 'Viewport size', {
+                    width: window.innerWidth,
+                    height: window.innerHeight
+                });
+            }
+
+            setupErrorTracking() {
+                window.addEventListener('error', (event) => {
+                    this.error('javascript', 'Runtime Error', {
+                        message: event.message,
+                        filename: event.filename,
+                        line: event.lineno,
+                        column: event.colno,
+                        stack: event.error?.stack
+                    });
+                });
+
+                window.addEventListener('unhandledrejection', (event) => {
+                    this.error('promise', 'Unhandled Promise Rejection', {
+                        reason: event.reason
+                    });
+                });
+            }
+
+            getSessionId() {
+                if (!sessionStorage.getItem('sessionId')) {
+                    sessionStorage.setItem('sessionId', 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9));
+                }
+                return sessionStorage.getItem('sessionId');
+            }
+
+            storeLog(logEntry) {
+                const logs = JSON.parse(localStorage.getItem('webLogs') || '[]');
+                logs.push(logEntry);
+                
+                if (logs.length > this.maxStorageSize) {
+                    logs.splice(0, logs.length - this.maxStorageSize);
+                }
+                
+                localStorage.setItem('webLogs', JSON.stringify(logs));
+            }
+
+            async sendToAPI(logEntry) {
+                try {
+                    await fetch(this.apiEndpoint, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(logEntry)
+                    });
+                } catch (error) {
+                    console.error('Failed to send log to API:', error);
+                }
+            }
+        }
+
+        // Initialize Logger
+        const logger = new WebLogger({
+            level: 'info',
+            enableConsole: true,
+            enableStorage: true,
+            enableDebugPanel: true,
+            maxStorageSize: 200
+        });
+
+        // Setup error tracking
+        logger.setupErrorTracking();
+
+        // Portfolio-specific tracking
+        document.addEventListener('DOMContentLoaded', () => {
+            logger.info('app', 'Portfolio loaded successfully');
+            logger.trackPageMetrics();
+
+            // Track navigation clicks
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const section = e.target.getAttribute('data-section');
+                    logger.trackUserInteraction(`nav-${section}`, 'clicked', {
+                        target: e.target.href
+                    });
+                });
+            });
+
+            // Track project interactions
+            document.querySelectorAll('.project').forEach(project => {
+                project.addEventListener('click', (e) => {
+                    const projectName = project.getAttribute('data-project');
+                    logger.trackUserInteraction(`project-${projectName}`, 'clicked');
+                });
+
+                project.addEventListener('mouseenter', (e) => {
+                    const projectName = project.getAttribute('data-project');
+                    logger.trackUserInteraction(`project-${projectName}`, 'hovered');
+                });
+            });
+
+            // Track contact link clicks
+            document.querySelectorAll('[data-contact]').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const contactType = link.getAttribute('data-contact');
+                    logger.trackUserInteraction(`contact-${contactType}`, 'clicked');
+                });
+            });
+
+            // Track scroll behavior
+            let maxScrollDepth = 0;
+            let scrollTimeout;
+
+            window.addEventListener('scroll', () => {
+                clearTimeout(scrollTimeout);
+                
+                // Update scroll progress bar
+                const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+                document.getElementById('scroll-progress').style.width = scrollPercent + '%';
+
+                // Show/hide back to top button
+                const backToTop = document.getElementById('back-to-top');
+                if (window.scrollY > 300) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+
+                // Track scroll depth (debounced)
+                scrollTimeout = setTimeout(() => {
+                    const scrollDepth = Math.round(scrollPercent);
+                    if (scrollDepth > maxScrollDepth && scrollDepth % 25 === 0) {
+                        maxScrollDepth = scrollDepth;
+                        logger.trackUserInteraction('page', `scrolled to ${scrollDepth}%`);
+                    }
+                }, 150);
+            });
+
+            // Track time spent on page
+            let startTime = Date.now();
+            window.addEventListener('beforeunload', () => {
+                const timeSpent = Math.round((Date.now() - startTime) / 1000);
+                logger.info('analytics', 'Session ended', {
+                    timeSpent: timeSpent + 's',
+                    maxScrollDepth: maxScrollDepth + '%'
+                });
+            });
+
+            // Track page visibility changes
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    logger.info('analytics', 'Page hidden');
+                } else {
+                    logger.info('analytics', 'Page visible');
+                }
+            });
+        });
+
+        // Utility functions
+        function scrollToTop() {
+            logger.trackUserInteraction('back-to-top', 'clicked');
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        function toggleDebug() {
+            const panel = document.getElementById('debug-panel');
+            panel.style.display = panel.style.display === 'none' || !panel.style.display ? 'block' : 'none';
+            logger.trackUserInteraction('debug-panel', 'toggled');
+        }
+
+        // Performance monitoring
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const perfData = performance.getEntriesByType('navigation')[0];
+                if (perfData) {
+                    logger.trackPerformance('DOM-content-loaded', Math.round(perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart) + 'ms');
+                    logger.trackPerformance('load-complete', Math.round(perfData.loadEventEnd - perfData.loadEventStart) + 'ms');
+                }
+            }, 0);
+        });
+    </script>
+</body>
+</html>
